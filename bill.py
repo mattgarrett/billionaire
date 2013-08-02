@@ -16,7 +16,7 @@ if len(sys.argv) == 1:
 
 try:
     rule = __import__((sys.argv[1])[0:-3])
-except:
+except ImportError:
     print ('couldn\'t import the rules file:')
     print (sys.argv[1])
     sys.exit(0)
