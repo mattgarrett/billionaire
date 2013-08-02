@@ -34,7 +34,7 @@ if len(sys.argv) > 2:
 count = 0
 history = []
 #TODO: unhardcode the file name
-cr = csv.reader(open("nasdaq.csv", "r"))
+cr = csv.reader(open("data/nasdaq.csv", "r"))
 
 #initial value of stock, initial value of capital
 stock = 10000
