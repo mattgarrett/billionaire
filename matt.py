@@ -6,9 +6,9 @@ def main(argv, stock, cash):
     else:
         today = len(argv) - 1
         if (argv[today] > argv[today - 1]):
-            return 0
+            return 1
         elif (argv[today] < argv[today - 1]):
-            return 0
+            return -1
         else:
             return 0
 
