@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
 #bill.py
-#
 #matt and peter, becoming billionaires
+
+#first arg is the python rule file for playing the stock market game
+#second (optional) argument is the number of days to simulate
 
 import csv
 import sys
