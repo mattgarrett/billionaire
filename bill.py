@@ -114,9 +114,6 @@ for item in leaderboard:
     print ("   " + str(item))
 
 if len(leaderboard) < 11 or leaderboard[10][2] != name + ".py":
-    if len(leaderboard) == 11:
-        os.remove("data/leaderboard/" + leaderboard[10][2])
-        call(["git", "rm", "-fq", "data/leaderboard/" + leaderboard[10][2]])
     copyfile(sys.argv[1], "data/leaderboard/" + name + ".py")
     call(["git", "add", "data/leaderboard/" + name + ".py"])
     print ("\nYou made it on the leaderboard as " + name + ".py!")
