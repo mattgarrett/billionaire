@@ -87,7 +87,7 @@ for row in stockData:
         cash = cash - order
     count = count + 1
 
-
+"""
 leaderboard = []
 leaderboardNames = []
 words = []
@@ -128,3 +128,4 @@ if len(leaderboard) < 11 or leaderboard[10][2] != name + ".py":
 else:
     print ("You didn't make it on the leaderboard")
     print ("You must be pretty bad")
+"""
