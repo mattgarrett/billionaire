@@ -4,6 +4,8 @@ class indicators:
 	def __init__(self):
 		self.K=[-1,-1,-1]
 		self.D=[-1,-1]
+		self.EMAIDX=[]
+		self.SMAIDX=[]
 	#Traditional stochastic index
 	#Fast stochastic window of 14 days
 	#Slow stochastic window of 3 fast stochastic days
@@ -54,32 +56,36 @@ class indicators:
 	
 	#simple moving average
 	def SMA(self, idx, history=10):
+		self.SMAIDX.append(self.CalculateSMA(idx,history))
+		return self.SMAIDX
+
+	def CalculateSMA(self, idx, history=10):
 		if history > len(idx):
-			print('Insufficient data width\n')
-			return 0
+			#print('SMA: Insufficient data width\n')
+			return float(sum(idx)/len(idx))
 		else:
-			return float(sum(a[-history:])/history)
+			return float(sum(idx[-history:])/history)
+
 	#exponential moving average
 	def EMA(self, idx, history=22):
 		if history > len(idx)-1:
-			print('Insufficient data width\n')
+			print('EMA: Insufficient data width\n')
 			return 0
 		else:
-			EMA=self.CalculateEMA(idx,todayClose,history,yesterdayEMA)
-			return EMA
+			return self.CalculateEMA(idx, idx[-1], history)
 
-	def CalculateEMA(self, idx, todayClose, history, yesterdayEMA):
-		self.EMA=[idx[0]]
+	def CalculateEMA(self, idx, todayClose, history):
 		k=float(2/(history+1))
 		for i in range(1,len(idx)):
 			if i <= history:
-				self.EMA.append(self.SMA(idx[0:i]))
+				self.EMAIDX.append(self.CalculateSMA(idx[0:i]))
 			else:
-				self.EMA.append(float(EMA[-1]*(1-k)+idx[i]*k))
-		return self.EMA[-1]
+				self.EMAIDX.append(float(self.EMAIDX[-1]*(1-k)+idx[i]*k))
+		return self.EMAIDX
 
 	def MACD(self, idx):
 		EMA9=self.EMA(idx,9)
 		EMA12=self.EMA(idx,12)
 		EMA26=self.EMA(idx,26)
 		MACD=[EMA12[i]-EMA26[i] for i in range(len(idx))]
+		return MACD
