@@ -41,9 +41,8 @@ def main(idx=[], stock=0, cash=0):
 	RULES.getIdx(idx)
 	IND=indicators.indicators()
 	if len(idx)==0:
-		print ('No History\n')
+		return 0
 	elif len(idx)<50:
-		print ('Insufficient data for operation\n')
 		return 0
 	else:
 		RULES.applyGoldenCross()
